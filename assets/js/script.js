@@ -18,23 +18,17 @@ console.log(currentWeather);
 
 
 
-/**
- * @description Returns the data from a OneCall API query from the given city.
- * @param {String} city 
- */
+// Gets the onecall data and runs set current data and set forecast data
 function getOneCallData(lat, lon) {
-    url = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&exclude=minutely,hourly,alerts&appid=" + openWeatherApiKey;
+    url = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&exclude=minutely,hourly,alerts&units=imperial&appid=" + openWeatherApiKey;
 
     fetch(url).then(response => response.json()).then(function(data) {
-        populateCurrentWeatherData(data.current.temp, data.current.humidity, data.current.uvi);
+        populateCurrentWeatherData(data.current.temp, data.current.humidity, data.current.wind_speed, data.current.uvi);
 
     });
 }
 
-/**
- * @description Returns the lattitude and longitude of the given city as an object.
- * @param {String} city 
- */
+// Gets the coordinates and calls get one data + set city name
 function getCoordinates(city) {
     let lat, lon;
     url = "http://api.openweathermap.org/geo/1.0/direct?q=" + city + "&limit=1&appid=" + openWeatherApiKey;
@@ -48,13 +42,18 @@ function getCoordinates(city) {
 }
 
 // TODO
-function populateCurrentWeatherData(temp, humidity, uvi) {
-    console.log("temp: " + temp + ", humidity: " + humidity + ", uvi: " +uvi);
+function populateCurrentWeatherData(temp, humidity, windspeed, uvi) {
+    //console.log("temp: " + temp + ", humidity: " + humidity + ", uvi: " +uvi);
+    $("#current-temperature").text(temp);
+    $("#current-humidity").text(humidity);
+    $("#current-wind-speed").text(windspeed + " mph");
+    $("#current-uvi").text(uvi);
+    // TODO: set color of badge based on uvi
 }
 
 // TODO
 function populateCurrentWeatherTitle(city) {
-    console.log(city);
+    $("#current-city").text(city);
 }
 
 // Kick off function for the page search
