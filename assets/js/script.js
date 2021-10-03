@@ -9,11 +9,17 @@ var openWeatherApiKey = "b11f5ffe66d7025a0419eaeb90671962";
 
 // Make an API call to get the weather for the default city
 // TODO: get users local city and set that to default
+initLocalStorage();
+
+// Populate the page with the last 10 results
+updateHistoryDisplay( JSON.parse( localStorage.getItem("weatherDashboardHistory") ) );
 runSearch("San Francisco");
 
 searchBtn.click( function() {
     //console.log();
-    runSearch($("input").val());
+    let city = $("input").val();
+    addHistory(city);
+    runSearch(city);
 } );
 
 
@@ -85,11 +91,32 @@ function runSearch(city) {
 
 // Save this city to the history and populate the history
 function addHistory(city) {
-    //TODO
+    let history = JSON.parse( localStorage.getItem("weatherDashboardHistory") );
+
+    history.history.push(city);
+    updateHistoryDisplay(history);
+    localStorage.setItem("weatherDashboardHistory", JSON.stringify(history));
+}
+
+function updateHistoryDisplay(history) {
+    $("#history").empty();
+    for( let i=history.history.length-1; i>=0 && i>history.history.length-11; i-- ) {
+        let tag = $("<p></p>");
+        tag.addClass("flex-fill p-3 text-center bg-white shadow-sm mb-2");
+        tag.text(history.history[i]);
+        console.log(tag);
+        tag.appendTo($("#history"));
+        tag.click( function() {
+
+            addHistory($(this).text());
+            runSearch($(this).text());
+            
+        } );
+    }
 }
 
 function initLocalStorage() {
     if(!localStorage.getItem("weatherDashboardHistory")) {
-        localStorage.setItem("weatherDashboardHistory", {});
+        localStorage.setItem("weatherDashboardHistory", JSON.stringify({"history": []}));
     }
 }
