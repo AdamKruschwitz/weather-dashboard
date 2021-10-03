@@ -12,7 +12,7 @@
 </head>
 <body class="vh-100">
     <header class="bg-dark text-white">
-        <h1 class="display-1 text-center">Weather Dashboard</h1>
+        <h1 class="display-1 text-center py-3">Weather Dashboard</h1>
     </header>
     
     <div class="d-flex align-items-stretch">
@@ -25,19 +25,13 @@
                 </div>
             </div>
             <section id="history">
-                <!-- <p class="flex-fill p-3 text-center bg-white shadow-sm mb-2">Dallas</p>
-                <p class="flex-fill p-3 text-center bg-white shadow-sm mb-2">Dallas</p>
-                <p class="flex-fill p-3 text-center bg-white shadow-sm mb-2">Dallas</p>
-                <p class="flex-fill p-3 text-center bg-white shadow-sm mb-2">Dallas</p>
-                <p class="flex-fill p-3 text-center bg-white shadow-sm mb-2">Dallas</p>
-                <p class="flex-fill p-3 text-center bg-white shadow-sm mb-2">Dallas</p> -->
             </section>
         </aside>
         <main class="container w-75">
-            <div class="row">
-                <div class="col-12 py-4">
+            <div class="row pb-3">
+                <div class="col-12">
                     <section>
-                        <h2 class="display-2" id="current-city"></h2>
+                        <h2 class="display-2 py-5" id="current-city"></h2>
                         <h3>Temperature: <span id="current-temperature"></span></h3>
                         <h3>Humidity: <span id="current-humidity"></span></h3>
                         <h3>Wind Speed: <span id="current-wind-speed"></span></h3>
@@ -45,7 +39,8 @@
                     </section>
                 </div>
             </div>
-            <h2 class="pb-3">5 Day forecast:</h2>
+            <hr>
+            <h2 class="py-3">5 Day forecast:</h2>
             <div class="row g-5" id="forecast-container">
                 <section class="col">
                     <div class="card bg-primary text-white">
