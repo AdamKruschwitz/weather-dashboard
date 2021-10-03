@@ -2,6 +2,8 @@
 
 A weather searching page that stores search history locally. This project was built using bootstrap, jquery, and moment.js along with the OpenWeather OneCall and Geocoding API's.
 
+This website was built from scratch as an assignment for the Berkley full stack development code bootcamp. 
+
 ## Built With
 
 * [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML)
@@ -21,13 +23,13 @@ A weather searching page that stores search history locally. This project was bu
 
 ## Authors
 
-* **YOUR NAME** 
+**Adam Kruschwitz**
 
-- [Link to Portfolio Site](#)
+- [Link to Portfolio Site](https://adamkruschwitz.github.io/Portfolio/)
 - [Link to Github](https://github.com/AdamKruschwitz)
 - [Link to LinkedIn](https://www.linkedin.com/in/adamkruschwitz/)
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/AdamKruschwitz/weather-dashboard/contributors) who participated in this project.
 
 ## License
 
