@@ -61,7 +61,20 @@ function populateCurrentWeatherData(temp, humidity, windspeed, uvi) {
     $("#current-humidity").text(humidity);
     $("#current-wind-speed").text(windspeed + " mph");
     $("#current-uvi").text(uvi);
-    // TODO: set color of badge based on uvi
+    $("#current-uvi").removeClass(["bg-primary", "bg-success", "bg-warning", "bg-danger"]);
+    // set color of badge based on uvi
+    if(uvi <= 2) {
+        $("#current-uvi").addClass("bg-primary");
+    } 
+    else if(uvi > 2 && uvi <= 5) {
+        $("#current-uvi").addClass("bg-success");
+    }
+    else if(uvi > 5 && uvi <= 7) {
+        $("#current-uvi").addClass("bg-warning");
+    }
+    else {
+        $("#current-uvi").addClass("bg-danger");
+    }
 }
 
 // add city name to the page
@@ -80,7 +93,16 @@ function populateForecastWeather(forecast) {
         $(cards[i]).find("p.forecast-uvi").text(forecast[i].uvi);
         $(cards[i]).find("span.forecast-temperature").text(forecast[i].temp.day);
         $(cards[i]).find("span.forecast-humidity").text(forecast[i].humidity);
-        // TODO: set sunny symbol based on uvi
+        // Use emoji's to represent uvi on the cards
+        if(forecast[i].uvi <= 2) {
+            $(cards[i]).find("p.forecast-uvi").text("🌥");
+        }
+        else if(forecast[i].uvi > 2 && forecast[i].uvi <=5) {
+            $(cards[i]).find("p.forecast-uvi").text("🌤");
+        }
+        else {
+            $(cards[i]).find("p.forecast-uvi").text("☀");
+        }
     }
 }
 
@@ -110,7 +132,7 @@ function updateHistoryDisplay(history) {
 
             addHistory($(this).text());
             runSearch($(this).text());
-            
+
         } );
     }
 }
