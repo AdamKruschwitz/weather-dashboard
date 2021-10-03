@@ -44,7 +44,7 @@ function getOneCallData(lat, lon) {
 // Gets the coordinates and calls get one data + set city name
 function getCoordinates(city) {
     let lat, lon;
-    url = "http://api.openweathermap.org/geo/1.0/direct?q=" + city + "&limit=1&appid=" + openWeatherApiKey;
+    url = "https://api.openweathermap.org/geo/1.0/direct?q=" + city + "&limit=1&appid=" + openWeatherApiKey;
     fetch(url).then(response => response.json()).then(function(data) {
         lat = data[0].lat;
         lon = data[0].lon;
