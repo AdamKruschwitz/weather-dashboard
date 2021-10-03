@@ -24,7 +24,7 @@ function getOneCallData(lat, lon) {
 
     fetch(url).then(response => response.json()).then(function(data) {
         populateCurrentWeatherData(data.current.temp, data.current.humidity, data.current.wind_speed, data.current.uvi);
-
+        populateForecastWeather(data.daily);
     });
 }
 
@@ -41,7 +41,7 @@ function getCoordinates(city) {
     return {"lat": lat, "lon":lon};
 }
 
-// TODO
+// add current weather data to the page
 function populateCurrentWeatherData(temp, humidity, windspeed, uvi) {
     //console.log("temp: " + temp + ", humidity: " + humidity + ", uvi: " +uvi);
     $("#current-temperature").text(temp);
@@ -51,9 +51,23 @@ function populateCurrentWeatherData(temp, humidity, windspeed, uvi) {
     // TODO: set color of badge based on uvi
 }
 
-// TODO
+// add city name to the page
 function populateCurrentWeatherTitle(city) {
-    $("#current-city").text(city);
+    $("#current-city").text(city + " right now...");
+}
+
+function populateForecastWeather(forecast) {
+    console.log(forecast.length);
+    console.log(forecast[0]);
+
+    let cards = forecastContainer.children();
+    console.log(cards);
+    for(let i=0; i<cards.length; i++) {
+        $(cards[i]).find("p.forecast-uvi").text(forecast[i].uvi);
+        $(cards[i]).find("span.forecast-temperature").text(forecast[i].temp.day);
+        $(cards[i]).find("span.forecast-humidity").text(forecast[i].humidity);
+        // TODO: set sunny symbol based on uvi
+    }
 }
 
 // Kick off function for the page search
