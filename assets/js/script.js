@@ -3,13 +3,20 @@
 // Get variables for the forecast card container, the search input and button, and current forecast, and a default city
 var searchBtn = $("button");
 var forecastContainer = $("#forecast-container");
+var now = moment();
 
 var openWeatherApiKey = "b11f5ffe66d7025a0419eaeb90671962";
 
 // Make an API call to get the weather for the default city
-let currentWeather = runSearch("San Francisco");
+// TODO: get users local city and set that to default
+runSearch("San Francisco");
 
-console.log(currentWeather);
+searchBtn.click( function() {
+    //console.log();
+    runSearch($("input").val());
+} );
+
+
 // parse that content and set for the current conditions and the forecast elements on the page
 // When the user clicks the submit button...
     // Get the value of the input field
@@ -63,6 +70,7 @@ function populateForecastWeather(forecast) {
     let cards = forecastContainer.children();
     console.log(cards);
     for(let i=0; i<cards.length; i++) {
+        $(cards[i]).find("h3.day").text(moment(now).add(i+1, "d").format("dddd"));
         $(cards[i]).find("p.forecast-uvi").text(forecast[i].uvi);
         $(cards[i]).find("span.forecast-temperature").text(forecast[i].temp.day);
         $(cards[i]).find("span.forecast-humidity").text(forecast[i].humidity);
@@ -73,4 +81,15 @@ function populateForecastWeather(forecast) {
 // Kick off function for the page search
 function runSearch(city) {
     getCoordinates(city);
+}
+
+// Save this city to the history and populate the history
+function addHistory(city) {
+    //TODO
+}
+
+function initLocalStorage() {
+    if(!localStorage.getItem("weatherDashboardHistory")) {
+        localStorage.setItem("weatherDashboardHistory", {});
+    }
 }
