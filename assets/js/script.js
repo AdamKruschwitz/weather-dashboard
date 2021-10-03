@@ -83,11 +83,11 @@ function populateCurrentWeatherTitle(city) {
 }
 
 function populateForecastWeather(forecast) {
-    console.log(forecast.length);
-    console.log(forecast[0]);
+    // console.log(forecast.length);
+    // console.log(forecast[0]);
 
     let cards = forecastContainer.children();
-    console.log(cards);
+    // console.log(cards);
     for(let i=0; i<cards.length; i++) {
         $(cards[i]).find("h3.day").text(moment(now).add(i+1, "d").format("dddd"));
         $(cards[i]).find("p.forecast-uvi").text(forecast[i].uvi);
@@ -126,7 +126,7 @@ function updateHistoryDisplay(history) {
         let tag = $("<p></p>");
         tag.addClass("flex-fill p-3 text-center bg-white shadow-sm mb-2");
         tag.text(history.history[i]);
-        console.log(tag);
+        // console.log(tag);
         tag.appendTo($("#history"));
         tag.click( function() {
 
