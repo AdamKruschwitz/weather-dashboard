@@ -90,19 +90,11 @@ function populateForecastWeather(forecast) {
     // console.log(cards);
     for(let i=0; i<cards.length; i++) {
         $(cards[i]).find("h3.day").text(moment(now).add(i+1, "d").format("dddd"));
-        $(cards[i]).find("p.forecast-uvi").text(forecast[i].uvi);
+        // $(cards[i]).find("p.forecast-uvi").text(forecast[i].uvi);
         $(cards[i]).find("span.forecast-temperature").text(forecast[i].temp.day);
         $(cards[i]).find("span.forecast-humidity").text(forecast[i].humidity);
         // Use emoji's to represent uvi on the cards
-        if(forecast[i].uvi <= 2) {
-            $(cards[i]).find("p.forecast-uvi").text("🌥");
-        }
-        else if(forecast[i].uvi > 2 && forecast[i].uvi <=5) {
-            $(cards[i]).find("p.forecast-uvi").text("🌤");
-        }
-        else {
-            $(cards[i]).find("p.forecast-uvi").text("☀");
-        }
+        $(cards[i]).find("img.forecast-uvi").attr("src", "https://openweathermap.org/img/wn/" + forecast[i].weather[0].icon + ".png");
     }
 }
 
